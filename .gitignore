@@ -1,8 +1,37 @@
-assignment-info
-
 *.i
 *.ii
 *.gpu
 *.ptx
 *.cubin
 *.fatbin
+
+# Ignore object files and compiled binaries
+*.o
+*.a
+*.so
+*.exe
+*.out
+*.dSYM/
+
+# Ignore build directories
+build/
+bin/
+
+# Ignore temporary files created by the editor (e.g., Vim, Emacs)
+*~
+*.swp
+*.swo
+
+# Ignore IDE-specific files (e.g., VS Code, Eclipse)
+.vscode/
+.idea/
+
+# Ignore generated files (e.g., makefiles, CMake files)
+Makefile
+CMakeCache.txt
+CMakeFiles/
+
+# Ignore debug logs
+*.log
+
+# Ignore core dumps (Li
