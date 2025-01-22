@@ -41,5 +41,8 @@ applications on a multiprocessor system.
 To compile and run the benchmark:
 ```bash
 make
-./jacobi-2d-imper
+./jacobi-2d-imper-<version>
+./utilities/better_time_benchmark.sh ./jacobi-2d-imper-<version>
 ```
+
+The evaluation produces a `benchmark_result.json` file containing the details on the performance of the code.
