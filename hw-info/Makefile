@@ -20,3 +20,7 @@ $(TARGET): $(SRC)
 # Clean up generated files (only remove the executable, no object files)
 clean:
 	rm -f $(TARGET)
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
