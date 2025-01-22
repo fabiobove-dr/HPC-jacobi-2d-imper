@@ -29,3 +29,17 @@ applications on a multiprocessor system.
 
 ## Features
 - Displays host system and GPU details.
+
+---
+## Files
+- `jacobi-2d-imper.c`: The benchmark source code.
+- `utilities/`: Support utilities for PolyBench benchmarks.
+- `datadir/`: Data directory for PolyBench benchmarks.
+- `Makefile`: Build configuration.
+
+## Usage
+To compile and run the benchmark:
+```bash
+make
+./jacobi-2d-imper
+```
