@@ -1,3 +1,6 @@
+# Additional ignores
+benchmark_results.json
+
 *.i
 *.ii
 *.gpu
