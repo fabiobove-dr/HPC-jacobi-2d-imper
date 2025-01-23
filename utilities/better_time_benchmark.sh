@@ -50,7 +50,7 @@ compute_mean_exec_time() {
 }
 
 BIN_NAME="$1"
-SCRIPT_NAME=$(basename "$0")
+SCRIPT_NAME=$(basename "$1")
 RUNS_NUMBER=5
 RUN_TIMESTAMP=timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 
