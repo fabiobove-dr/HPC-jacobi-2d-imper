@@ -1,6 +1,6 @@
 #!/bin/sh
-## time_benchmark_json.sh
-
+## Better time_benchmark.sh
+## Updated by: Fabio Bove, fabio.bove.dr@gmail.com
 ## Maximal variance accepted between the 3 median runs for performance results.
 ## Here 5%
 VARIANCE_ACCEPTED=5;
@@ -50,7 +50,7 @@ compute_mean_exec_time() {
 }
 
 BIN_NAME="$1"
-SCRIPT_NAME=$(basename "$0")
+SCRIPT_NAME=$(basename "$1")
 RUNS_NUMBER=5
 RUN_TIMESTAMP=timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 
