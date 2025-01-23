@@ -1,6 +1,6 @@
 #!/bin/sh
-## time_benchmark_json.sh
-
+## Better time_benchmark.sh
+## Updated by: Fabio Bove, fabio.bove.dr@gmail.com
 ## Maximal variance accepted between the 3 median runs for performance results.
 ## Here 5%
 VARIANCE_ACCEPTED=5;
