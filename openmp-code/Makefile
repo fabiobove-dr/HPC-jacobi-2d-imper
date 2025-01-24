@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -pg -O2 -DPOLYBENCH_TIME
+CFLAGS = -fopenmp -pg -O2 -DPOLYBENCH_TIME
 SRC = jacobi-2d-imper.c ../utilities/polybench.c
 
 INCLUDE = -I../utilities -Idatadir
