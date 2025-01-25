@@ -8,12 +8,12 @@
 
 /* Include benchmark-specific header. */
 /* Default data type is double, default size is 20x1000. */
-#include "jacobi-2d-imper.h"
+#include "../jacobi-2d-imper.h"
 
 
 /* Array initialization. */
 static
- void init_array (int n,
+void init_array (int n,
       DATA_TYPE POLYBENCH_2D(A,N,N,n,n),
       DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
 {
