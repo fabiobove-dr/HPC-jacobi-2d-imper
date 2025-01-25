@@ -50,3 +50,4 @@ echo "Script completed successfully. Benchmark and profiling results saved to ./
 rm gmon.out
 rm benchmark_result.json
 rm profiling_report.json
+rm profiling_report.txt
