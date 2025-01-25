@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-
+#include <omp.h>  // Include OpenMP header
 /* Include polybench common header. */
 #include <polybench.h>
 
@@ -11,7 +11,7 @@
 #include "../jacobi-2d-imper.h"
 
 
-/* OPTIMIZATION NOTES */
+// OPTIMIZATION NOTES
 // The array updates in the nested loop (A[i][j] and B[i][j]) are independent for each iteration of the outer loop (i).
 // OpenMP will parallelize the outer loop (i) to improve performance by distributing iterations across threads.
 /* Array initialization. */
@@ -22,11 +22,6 @@ void init_array (int n,
 {
   int i, j;
 
-  // Combina la suddivisione delle iterazioni del ciclo tra thread (parallelismo a livello di thread) 
-  // con l'esecuzione simultanea di operazioni su più dati all'interno di ciascun thread (parallelismo a livello di dati)
-  // Questa combinazione permette di sfruttare sia il parallelismo a livello di thread, che il parallelismo a livello di istruzione SIMD
-  // La direttiva  simd  indica al compilatore di vettorizzare il ciclo.
-  // ogni thread eseguirà una porzione del loop, e all'interno di ciascuna iterazione del loop, il compilatore genererà istruzioni SIMD, se possibile
   #pragma omp parallel for
   for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
