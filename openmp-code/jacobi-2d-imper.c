@@ -22,7 +22,7 @@ void init_array (int n,
 {
   int i, j;
 
-  #pragma omp parallel for
+  #pragma omp parallel for collapse(2) private(i,j) schedule(static)
   for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
           A[i][j] = ((DATA_TYPE)i * (j + 2) + 2) / n;
@@ -51,24 +51,26 @@ static
 }
 
 
-/* Main computational kernel. The whole function will be timed, 
-including the call and return. */
-static 
-void kernel_jacobi_2d_imper(int tsteps,
-          int n,
-          DATA_TYPE POLYBENCH_2D(A,N,N,n,n),
-          DATA_TYPE POLYBENCH_2D(B,N,N,n,n))
-{
+static void kernel_jacobi_2d_imper(int tsteps,
+                                   int n,
+                                   DATA_TYPE POLYBENCH_2D(A, N, N, n, n),
+                                   DATA_TYPE POLYBENCH_2D(B, N, N, n, n)) {
   int t, i, j;
 
-  for (t = 0; t < _PB_TSTEPS; t++)
-  {
-    for (i = 1; i < _PB_N - 1; i++)
-      for (j = 1; j < _PB_N - 1; j++)
-        B[i][j] = 0.2 * (A[i][j] + A[i][j-1] + A[i][1+j] + A[1+i][j] + A[i-1][j]);
-    for (i = 1; i < _PB_N-1; i++)
-      for (j = 1; j < _PB_N-1; j++)
+  for (t = 0; t < tsteps; t++) {
+    #pragma omp parallel for private(i, j) collapse(2) schedule(static)
+    for (i = 1; i < n - 1; i++) {
+      for (j = 1; j < n - 1; j++) {
+        B[i][j] = 0.2 * (A[i][j] + A[i][j - 1] + A[i][j + 1] + A[i + 1][j] + A[i - 1][j]);
+      }
+    }
+
+    #pragma omp parallel for private(i, j) collapse(2) schedule(static)
+    for (i = 1; i < n - 1; i++) {
+      for (j = 1; j < n - 1; j++) {
         A[i][j] = B[i][j];
+      }
+    }
   }
 }
 
