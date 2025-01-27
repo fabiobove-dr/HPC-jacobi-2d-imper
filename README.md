@@ -73,7 +73,6 @@ Which function costs more?
 ```bash
 ./utilities/parse_profiling_report.sh
 ```
-
 ### How to read the `json` report
 
 - `percentage_time`: The percentage of the total program time spent in a particular function. A value of "100.00" indicates that this function used 100% of the program's execution time, while "0.00" indicates a negligible contribution to the total time. 
@@ -83,3 +82,14 @@ Which function costs more?
 - `self_time_per_call`: The average self time for each function call. This is the time the function took per invocation, excluding time spent in called functions.
 - `total_time_per_call`:  The total time taken per function call, including time spent in called functions. This field seems to be empty in your example, which could indicate that the measurement for this metric wasn't available or relevant.
 - `function_name`:  The name of the function being reported. If this is empty, the function is possibly an internal system function or an aggregate for multiple functions.
+
+### Valgrind
+To profile the program using Valgrind profiler:
+```bash
+make clean
+make
+make profile
+kcachegrind callgrind.out.<pid>
+```
+
+
