@@ -60,7 +60,6 @@ static void kernel_jacobi_2d_imper(int tsteps,
   for (t = 0; t < tsteps; t++) {
     #pragma omp parallel private(i, j)
     {
-      // Compute B[i][j] in parallel
       #pragma omp for collapse(2) schedule(static)
       for (i = 1; i < n - 1; i++) {
         for (j = 1; j < n - 1; j++) {
@@ -68,7 +67,6 @@ static void kernel_jacobi_2d_imper(int tsteps,
         }
       }
 
-      // Update A[i][j] in parallel
       #pragma omp for collapse(2) schedule(static)
       for (i = 1; i < n - 1; i++) {
         for (j = 1; j < n - 1; j++) {
