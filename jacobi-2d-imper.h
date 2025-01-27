@@ -2,7 +2,7 @@
 # define JACOBI_2D_IMPER_H
 
 /* Default to STANDARD_DATASET. */
-# if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET)
+# if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(MAX_DATASET)
 #  define EXTRALARGE_DATASET
 # endif
 
@@ -32,6 +32,11 @@
 #  ifdef EXTRALARGE_DATASET
 #   define TSTEPS 100
 #   define N 4000
+#  endif
+
+#  ifdef MAX_DATASET
+#   define TSTEPS 100
+#   define N 10000
 #  endif
 # endif /* !N */
 

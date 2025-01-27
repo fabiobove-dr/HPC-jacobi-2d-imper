@@ -1,6 +1,7 @@
 # Additional ignores
 benchmark_results.json
 profiling_report.txt
+report
 
 *.i
 *.ii
