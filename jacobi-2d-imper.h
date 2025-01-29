@@ -1,6 +1,9 @@
 #ifndef JACOBI_2D_IMPER_H
 # define JACOBI_2D_IMPER_H
 
+/* Fixed number of threads - sweet spot found through profiling */
+# define NUM_THREADS 21
+
 /* Default to STANDARD_DATASET. */
 # if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(MAX_DATASET)
 #  define EXTRALARGE_DATASET

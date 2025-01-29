@@ -81,6 +81,8 @@ static void kernel_jacobi_2d_imper(int tsteps,
 
 int main(int argc, char** argv)
 {
+  omp_set_num_threads(NUM_THREADS);
+
   /* Retrieve problem size. */
   int n = N;
   int tsteps = TSTEPS;
