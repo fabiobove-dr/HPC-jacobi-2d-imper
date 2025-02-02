@@ -2,6 +2,7 @@
 benchmark_results.json
 profiling_report.txt
 report
+*/jacobi-2d-imper
 
 *.i
 *.ii
