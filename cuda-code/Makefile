@@ -1,19 +1,8 @@
-# Nome del file eseguibile
-EXEC = jacobi_2d_cuda
+EXECUTABLE := jacobi-2d-imper
+CUFILES := jacobi-2d-imper.cu
+PATH_TO_UTILS := ./utilities
 
-# File sorgente CUDA
-SRC = jacobi_2d_cuda.cu
-
-# Compilatore CUDA
-NVCC = nvcc
-
-# Flag di compilazione
-CFLAGS = -O3 -arch=sm_60  # Ottimizzazione cuda
-
-# Regola di compilazione
-$(EXEC): $(SRC)
-	$(NVCC) $(CFLAGS) -o $(EXEC) $(SRC)
-
-# Regola per pulire i file compilati
+all:
+	nvcc -O3 ${CUFILES} -I${PATH_TO_UTILS} -o ${EXECUTABLE}
 clean:
-	rm -f $(EXEC)
+	rm -f *~ *.exe

@@ -1,8 +1,5 @@
-#ifndef JACOBI_2D_IMPER_H
-# define JACOBI_2D_IMPER_H
-
-/* Fixed number of threads - sweet spot found through profiling */
-# define NUM_THREADS 21
+#ifndef JACOBI2D_CUH
+# define JACOBI2D_CUH
 
 /* Default to STANDARD_DATASET. */
 # if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(MAX_DATASET)
@@ -51,5 +48,9 @@
 #  define DATA_PRINTF_MODIFIER "%0.2lf "
 # endif
 
+/* Thread block dimensions */
+#define DIM_THREAD_BLOCK_X 32
+#define DIM_THREAD_BLOCK_Y 8
 
-#endif /* !JACOBI_2D_IMPER */
+
+#endif /* !JACOBI2D*/
