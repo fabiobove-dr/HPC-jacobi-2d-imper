@@ -44,8 +44,14 @@ kernel_jacobi_2d_imper_compute_vals(int n, DATA_TYPE* h_A, DATA_TYPE* h_B)
     // NB: The stencil computation requires neighboring elements, so we must avoid the first (i == 0, j == 0) and last (i == N-1, j == N-1) rows and columns.
 	if ((i >= 1) && (i < (_PB_N-1)) && (j >= 1) && (j < (_PB_N-1)))
 	{
-		h_B[i*N + j] = 0.2f * (h_A[i*N + j] + h_A[i*N + (j-1)] + h_A[i*N + (1 + j)] + h_A[(1 + i)*N + j] + h_A[(i-1)*N + j]);	
-	}
+		h_B[i*N + j] = 0.2f * (
+		    h_A[i*N + j] +
+		    h_A[i*N + (j-1)] +
+		    h_A[i*N + (1 + j)] +
+		    h_A[(1 + i)*N + j]
+		    + h_A[(i-1)*N + j]
+		);
+    }
 }
 
 
