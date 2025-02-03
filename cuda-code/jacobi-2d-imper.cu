@@ -13,6 +13,13 @@
 #include <polybench.h>
 #include <polybench.c>
 
+
+//OPTIMIZATION NOTES:
+// Creted two kernels: compute_vals and store_vals
+// Run kernel, split into two parts: Compute the values of h_B, store the values of h_B
+// one iteration is done by the composition of both kernels
+// Switched to cudaDeviceSynchronize, instead of cudaThreadSynchronize  which is now deprecated for v9 and later
+
 void
 init_array(int n, DATA_TYPE
     POLYBENCH_2D(h_A,N,N,n,n),
@@ -34,6 +41,7 @@ kernel_jacobi_2d_imper_compute_vals(int n, DATA_TYPE* h_A, DATA_TYPE* h_B)
 	int i = blockIdx.y * blockDim.y + threadIdx.y;
 	int j = blockIdx.x * blockDim.x + threadIdx.x;
 
+    // NB: The stencil computation requires neighboring elements, so we must avoid the first (i == 0, j == 0) and last (i == N-1, j == N-1) rows and columns.
 	if ((i >= 1) && (i < (_PB_N-1)) && (j >= 1) && (j < (_PB_N-1)))
 	{
 		h_B[i*N + j] = 0.2f * (h_A[i*N + j] + h_A[i*N + (j-1)] + h_A[i*N + (1 + j)] + h_A[(1 + i)*N + j] + h_A[(i-1)*N + j]);	
@@ -52,7 +60,6 @@ kernel_jacobi_2d_imper_store_vals(int n, DATA_TYPE* h_A, DATA_TYPE* h_B)
 		h_A[i*N + j] = h_B[i*N + j];
 	}
 }
-
 
 
 void
@@ -78,16 +85,13 @@ runJacobi2DCUDA(int tsteps, int n,
 
 	for (int t = 0; t < _PB_TSTEPS; t++)
 	{
-	    // Run kernel, split into two parts: Compute the values of h_B, store the values of h_B
-	    // one iteration is done by the composition of both kernels
 		kernel_jacobi_2d_imper_compute_vals<<<grid,block>>>(n, d_A, d_B);
-		cudaDeviceSynchronize(); // Switched to this because cudaThreadSynchronize is now deprecated for v9 and later
+		cudaDeviceSynchronize();
 		kernel_jacobi_2d_imper_store_vals<<<grid,block>>>(n, d_A, d_B);
 		cudaDeviceSynchronize();
 	}
 
 	/* Stop and print timer. */
-	//printf("GPU Time in seconds:\n");
   	polybench_stop_instruments;
   	polybench_print_instruments;
 
