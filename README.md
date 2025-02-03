@@ -42,10 +42,19 @@ make
 ---
 
 ## Profiling & Time Benchmarking
-1. Edit the `.h` file of `jacobi-2d-imper` and chose the data size (e.g. SMALL, STANDARD, LARGE, EXTRA).
-2. In the root folder you can find the `./do_all_4_me.sh` shell-script.
-3. Run `./do_all_4_me.sh <OPT_TYPE> <DATA_SIZE> <TEST_ONLY>` (e.g.`./do_all_4_me.sh openmp small 1`)
-4. The script will
+1. Configure
+    - make sure to create a report folder that contains one sub-dir for each "type" of implementation: sequential, cuda, openmp.
+    - Edit the header file `jacobi-2d-imper.h` and chose the data size (e.g. `SMALL`, `STANDARD`, `LARGE`, `EXTRA`).
+2. Run repetitive tests 
+   - In the root you can find the `./do_all_4_me.sh` shell-script.
+   - You can run benchmarking as follows: <br> 
+   ```bash 
+   # e.g../do_all_4_me.sh openmp small 0
+   ./do_all_4_me.sh <OPT_TYPE> <DATA_SIZE> <TEST_ONLY>
+   ```
+3. Reports
+- The script will automatically generate a benchmarking report inside the `/report/<OPT_TYPE>` folder.
+
 ### Better time benchmarking
 Will run automatically 5 x 5 jacobi runs and produce a .json file with the benchmarks of each of the run.
 
