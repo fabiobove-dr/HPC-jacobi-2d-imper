@@ -34,9 +34,9 @@ fi
 #####################################################################################################################################################################
 cd ./utilities || { echo "Error: Directory 'utilities' not found."; exit 1; }
 # Profiling
-./run_profiling.sh ../"$TYPE_ARG"/jacobi-2d-imper ../"$TYPE_ARG"/gmon.out > /dev/null
-./parse_profiling_report.sh > /dev/null
-cp profiling_report.json "$REPORT_DIR/profiling_${SIZE_ARG}_${TYPE_ARG_CLEAN}.json"
+# ./run_profiling.sh ../"$TYPE_ARG"/jacobi-2d-imper ../"$TYPE_ARG"/gmon.out > /dev/null
+# ./parse_profiling_report.sh > /dev/null
+# cp profiling_report.json "$REPORT_DIR/profiling_${SIZE_ARG}_${TYPE_ARG_CLEAN}.json"
 
 # Time Benchmarking
 for _ in {1..5}; do
