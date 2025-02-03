@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <math.h>
-#include <omp.h>  // Include OpenMP header
+#include <omp.h>
 /* Include polybench common header. */
 #include <polybench.h>
 
@@ -12,8 +12,13 @@
 
 
 // OPTIMIZATION NOTES
+// Created one unique parallel region for the kernel function
+// Used collapse(2) in all the nested loops to improve CPU-boundness of the algorithm and see improvements on small datasets
+// Created two for directives , with static scheduling to reduce the overheads
+// Number of threads can be set in the header file: NUM_THREADS.
 // The array updates in the nested loop (A[i][j] and B[i][j]) are independent for each iteration of the outer loop (i).
-// OpenMP will parallelize the outer loop (i) to improve performance by distributing iterations across threads.
+
+
 /* Array initialization. */
 static
 void init_array (int n,
@@ -81,6 +86,7 @@ static void kernel_jacobi_2d_imper(int tsteps,
 
 int main(int argc, char** argv)
 {
+
   omp_set_num_threads(NUM_THREADS);
 
   /* Retrieve problem size. */
