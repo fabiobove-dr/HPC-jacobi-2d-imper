@@ -3,15 +3,15 @@
 
 /* Default to STANDARD_DATASET. */
 # if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(MAX_DATASET)
-#  define SMALL_DATASET
+#  define EXTRALARGE_DATASET
 # endif
 
 /* Do not define anything if the user manually defines the size. */
 # if !defined(TSTEPS) && !defined(N)
 /* Define the possible dataset sizes. */
 #  ifdef MINI_DATASET
-#   define TSTEPS 2
-#   define N 32
+#   define TSTEPS 1
+#   define N 4
 #  endif
 
 #  ifdef SMALL_DATASET
@@ -49,8 +49,8 @@
 # endif
 
 /* Thread block dimensions */
-#define DIM_THREAD_BLOCK_X 32
-#define DIM_THREAD_BLOCK_Y 8
+#define DIM_THREAD_BLOCK_X 16
+#define DIM_THREAD_BLOCK_Y 16
 
 
 #endif /* !JACOBI2D*/

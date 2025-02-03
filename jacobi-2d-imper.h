@@ -5,7 +5,7 @@
 # define NUM_THREADS 21
 
 /* Default to STANDARD_DATASET. */
-# if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(MAX_DATASET)
+# if !defined(MINI_DATASET) && !defined(SMALL_DATASET) && !defined(LARGE_DATASET) && !defined(EXTRALARGE_DATASET) && !defined(TEST)
 #  define EXTRALARGE_DATASET
 # endif
 
@@ -37,9 +37,9 @@
 #   define N 4000
 #  endif
 
-#  ifdef MAX_DATASET
-#   define TSTEPS 100
-#   define N 10000
+#  ifdef TEST
+#   define TSTEPS 20
+#   define N 4000
 #  endif
 # endif /* !N */
 
