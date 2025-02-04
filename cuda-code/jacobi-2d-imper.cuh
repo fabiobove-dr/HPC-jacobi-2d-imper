@@ -49,8 +49,7 @@
 # endif
 
 /* Thread block dimensions */
-#define DIM_THREAD_BLOCK_X 16
-#define DIM_THREAD_BLOCK_Y 16
-
+#define DIM_THREAD_BLOCK_X 32
+#define DIM_THREAD_BLOCK_Y 32
 
 #endif /* !JACOBI2D*/
